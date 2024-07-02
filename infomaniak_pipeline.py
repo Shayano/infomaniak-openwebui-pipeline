@@ -4,6 +4,14 @@ from pydantic import BaseModel
 import os
 import requests
 
+"""
+For this pipeline to work properly, you need to change the maximum context value in the model's advanced params.
+Change the value "Context Length" (num_ctx) for one of the followings values. 
+Set 32000 for mixtral 
+Set 23000 for mixtral8x22b
+Set 8000 for llama3
+"""
+
 class Pipeline:
     class Valves(BaseModel):
         INFOMANIAK_API_KEY: str = ""
@@ -11,10 +19,10 @@ class Pipeline:
         MODEL: str = ""
 
     def __init__(self):
-        self.name = "Infomaniak"
+        self.name = "Infomaniak CHANGEME"
         self.valves = self.Valves(
             **{
-                "INFOMANIAK_API_KEY": os.getenv("INFOMANIAK_API_KEY", "infomaniak api key here"),                
+                "INFOMANIAK_API_KEY": os.getenv("INFOMANIAK_API_KEY", "infomaniak api key here"),
                 "PRODUCT_ID": int(os.getenv("PRODUCT_ID", 0)),
                 "MODEL": os.getenv("MODEL", "mixtral, mixtral8x22b or llama3"),
             }
@@ -60,19 +68,37 @@ class Pipeline:
 
         print(payload)
 
+        url = f"https://api.infomaniak.com/1/ai/{PRODUCT_ID}/openai/chat/completions"
+
         try:
+            # Log the request details
+            print(f"Making request to {url} with payload {payload} and headers {headers}")
+
+            # Make the request
             r = requests.post(
-                url=f"https://api.infomaniak.com/1/ai/{PRODUCT_ID}/openai/chat/completions",
+                url=url,
                 json=payload,
                 headers=headers,
                 stream=True,
             )
 
+            # Log the response status code and content
+            print(f"Response status code: {r.status_code}")
+            print(f"Response content: {r.content}")
+
+            # Raise an exception if the request was not successful
             r.raise_for_status()
 
+            # Return the response based on the stream parameter
             if body["stream"]:
                 return r.iter_lines()
             else:
                 return r.json()
-        except Exception as e:
-            return f"Error: {e}"
+        except requests.exceptions.HTTPError as errh:
+            print ("Http Error:",errh)
+        except requests.exceptions.ConnectionError as errc:
+            print ("Error Connecting:",errc)
+        except requests.exceptions.Timeout as errt:
+            print ("Timeout Error:",errt)
+        except requests.exceptions.RequestException as err:
+            print ("Something went wrong",err)
