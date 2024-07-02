@@ -20,7 +20,3 @@ Change the value "Context Length" (num_ctx) for one of the followings values.
 Set 32000 for mixtral   
 Set 23000 for mixtral8x22b  
 Set 8000 for llama3  
-
----
-
-**Note**: Ensure you replace the default values in the environment variables with your own configurations for proper usage.
