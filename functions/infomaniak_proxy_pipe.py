@@ -2,7 +2,7 @@
 title: Infomaniak Proxy Pipe
 author: Shayano
 author_url: https://github.com/Shayano/
-funding_url: https://github.com/Shayano/infomaniak-openwebui-pipeline
+funding_url: https://github.com/Shayano/infomaniak-openwebui-pipeline/functions/
 version: 0.1.0
 
 For this proxy pipeline to work properly, you need to change the maximum context value in the model's advanced params.
