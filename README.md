@@ -20,3 +20,10 @@ Change the value "Context Length" (num_ctx) for one of the followings values.
 Set 32000 for mixtral   
 Set 23000 for mixtral8x22b  
 Set 8000 for llama3  
+
+
+## Update 03.07.2024
+I have created a new script that is now available in the functions folder. This function makes it much easier to implement compared to using a pipeline.
+With this function, there is no need to manually define the models. Simply add the function and set the API, Product ID, prefix and it will automatically fetch the required models for you.
+The function is also available for download from the Open WebUI website at <https://openwebui.com/f/shayoo/infomaniak_proxy_pipe/>.
+
