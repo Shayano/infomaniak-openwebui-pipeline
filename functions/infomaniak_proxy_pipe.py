@@ -1,9 +1,9 @@
 """
-title: Infomaniak Proxy Pipe
+title: Infomaniak Manifold
 author: Shayano
 author_url: https://github.com/Shayano/
-funding_url: https://github.com/Shayano/infomaniak-openwebui-pipeline
-version: 0.1.0
+funding_url: https://github.com/open-webui
+version: 0.1.2
 
 For this proxy pipeline to work properly, you need to change the maximum context value in the model's advanced params.
 Change the value "Context Length" (num_ctx) for one of the followings values.
@@ -11,6 +11,7 @@ Change the value "Context Length" (num_ctx) for one of the followings values.
 Set 32000 for mixtral
 Set 23000 for mixtral8x22b
 Set 8000 for llama3
+https://developer.infomaniak.com/docs/api/get/1/ai
 """
 
 
