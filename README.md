@@ -1,6 +1,8 @@
-# Infomaniak Open WebUI Pipeline
-
+# (DEPRECATED) Infomaniak Open WebUI Pipeline
 This project is a pipeline for interacting with the Infomaniak OpenAI API. It allows for managing API requests and responses using various models and configurations.
+
+Use this tool instead:  
+https://github.com/owndev/Open-WebUI-Functions/discussions/17#discussion-8141139
 
 ## Configuration
 
